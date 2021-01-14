@@ -60,6 +60,10 @@ $TASKRC = '/home/cyrus/.config/task/taskrc'
 aliases['..'] = 'cd ..'
 
 aliases['gc'] = 'git clone'
+aliases['gh'] = 'git push origin main'
+aliases['ga'] = 'git add'
+aliases['gp'] = 'git pull'
+aliases['gst'] = 'git status'
 
 aliases['h'] = 'sudo hdparm -y /dev/sdb'
 
@@ -69,11 +73,12 @@ aliases['la'] = 'ls -a'
 
 aliases['n'] = 'nvim'
 
-aliases['r'] = 'rm -r'
+aliases['r'] = 'sudo rm -rf'
 
-aliases['Ss'] = 'sudo pacman -Ss'
 
-aliases['S'] = 'sudo pacman -S'
+aliases['ss'] = 'sudo pacman -Ss'
+aliases['s'] = 'sudo pacman -S'
+aliases['syyu'] = 'sudo pacman -Syyu'
 
 aliases['u'] = ("sudo updatedb && "
                 "sudo pacman -Syyu --noconfirm && "
