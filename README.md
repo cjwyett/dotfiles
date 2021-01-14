@@ -1,2 +1,2 @@
 # dotfiles
-Using someone else's dotfiles is like wearing someone else's underwear. 
+Tread lightly... using someone else's dotfiles is like wearing someone else's underwear. 
