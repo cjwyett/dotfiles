@@ -18,16 +18,15 @@ urgency.uda.priority.L.coefficient=-10.
 urgency.uda.priority.M.coefficient=0.
 
 # Color theme (uncomment one to use)
-#include /usr/share/doc/task/rc/dark-gray-256.theme
+color=on
 include /usr/share/doc/task/rc/no-color.theme
 
-
-color=on
-
+# Burndown
 color.burndown.done=black on green    
 color.burndown.pending=black on red   
 color.burndown.started=black on blue   
 
+# Calender
 color.calendar.due=black on yellow           
 color.calendar.due.today=black on gray15    
 color.calendar.holiday=black on gray20    
@@ -36,14 +35,15 @@ color.calendar.today=bold white
 color.calendar.weekend=on gray2           
 color.calendar.weeknumber=magenta
 
-color.active=green
+# Main
 color.alternate=on grey2           
 color.blocked=gray13             
 
 color.debug=blue               
-color.due=yellow
-color.overdue=bold black on red
-color.due.today=bold red          
+color.due=bold yellow
+color.overdue=bold on rgb200
+color.due.today=black on color9          
+color.active=bold green
 
 color.footnote=on gray5           
 color.header=color0 on gray11   
@@ -63,7 +63,23 @@ color.uda.priority.M=gray18
 color.undo.after=black on white     
 color.undo.before=white on black     
 
-
 color.warning=bold red on yellow
 color.error=bold yellow on red       
 confirmation=no
+
+# Custom Report
+
+report.next.columns=id,description,priority,project,due.countdown,tags,depends,urgency
+report.next.labels=ID,Task,Priority,Project,Due,Tags,Deps,Urg.
+
+report.ready.description=ready tasks
+report.ready.columns=id,description,priority,project,due.countdown,tags,urgency
+report.ready.labels=ID,Task,Priority,Project,Due,Tags,Urg.
+report.ready.sort=urgency-
+report.ready.filter=status:pending +READY
+
+report.waiting.labels=ID,Task,Priority,Project,Due,Deps,Tags,Urg.
+report.waiting.columns=id,description,priority,project,due.countdown,depends,tags,urgency
+report.waiting.filter=status:pending -READY
+report.waiting.sort=urgency-
+report.waiting.description=waiting tasks
