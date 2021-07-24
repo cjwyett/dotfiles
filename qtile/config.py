@@ -4,17 +4,27 @@
 
 from datetime import datetime
 from typing import List  # noqa: F401
-from libqtile import bar, layout, widget
+from libqtile import bar, layout, widget, hook
 from libqtile.config import *
 from libqtile.lazy import lazy
-import weather as w
+import os
+import subprocess
+
+# }}}
+
+# Autostart {{{
+@hook.subscribe.startup_once
+def autostart():
+    home = os.path.expanduser('~/.config/qtile/autostart.sh')
+    subprocess.call([home])
+
 
 # }}}
 
 # Variables {{{
 
 mod = "mod4"
-terminal = "kitty"
+terminal = "alacritty"
 
 groups = [Group(i) for i in "123456789"]
 
@@ -28,7 +38,7 @@ groups += [
 
 keys = [
     # toggle visibiliy of above defined DropDown named "term"
-    Key([mod], "d", lazy.group['0'].dropdown_toggle('popup')),
+    Key([mod], "p", lazy.group['0'].dropdown_toggle('popup')),
 ]
 
 follow_mouse_focus = False
@@ -97,7 +107,11 @@ keys += [
 
     Key([mod], "Return", lazy.spawn(terminal)),
 
-    Key([mod], "w", lazy.spawn("qutebrowser")),
+    Key([mod], "b", lazy.spawn("qutebrowser")),
+
+    Key([mod], "d", lazy.spawn("rofi -show run")),
+    Key([mod], "w", lazy.spawn("rofi -show window")),
+    Key([mod], "s", lazy.spawn("rofi -show ssh")),
 
     Key([mod], "Tab", lazy.next_layout()),
 
@@ -176,7 +190,6 @@ extension_defaults = widget_defaults.copy()
 
 # Seperation and Spacing {{{
 
-
 def seperate():
     widge = widget.Sep(
         padding=4,
@@ -194,14 +207,10 @@ def space():
 # CPU Info {{{
 
 
-def open_btm(qtile):
-    qtile.cmd_spawn("kitty \"btm\"")
-
 
 def cpu():
     widge = widget.CPU(
         format="CPU: {load_percent}%",
-        mouse_callbacks={"Button1": open_btm},
         background=colors[8]
     )
     return widge
@@ -217,51 +226,6 @@ def cpugraph():
 
 def netgraph():
     return widget.NetGraph()
-
-# }}}
-
-# Memory {{{
-
-
-def memory():
-    widge = widget.Memory(
-        #format = "{MemPercent}"
-        format="{MemUsed/100}",
-        background=colors[14],
-        fontshadow=colors[1]
-    )
-    return widge
-
-# }}}
-
-
-# Weather {{{
-
-
-def open_wttr(qtile):
-    qtile.cmd_spawn(
-        "kitty --class 'wtr' -c .config/kitty/wttr.conf --hold python \".config/qtile/wttr.py\""
-    )
-
-
-"""
-def open_wttr():
-    lazy.group['0'].dropdown_toggle('popup')
-    return None 
-"""
-
-
-def weather():
-    widge = w.OpenWeatherMap(
-        api_key="87fe60130ae4137ac6d58db95b6f1290",
-        latitude=51.367720,
-        longitude=-0.137930,
-        background=colors[12],
-        foreground=colors[0],
-        fontsize=19,
-        mouse_callbacks={"Button1": open_wttr}
-    )
-    return widge
 
 # }}}
 
@@ -307,7 +271,7 @@ def day():
 
 def countdown():
     bg = colors[11]
-    day = datetime(2021, 1, 27, 9)
+    day = datetime(2021, 1, 25, 9)
     widge = widget.Countdown(
         date=day,
         background=bg)
@@ -327,9 +291,8 @@ def time():
 
 
 def init_widgets_list():
-    list = [cpu(), memory(),
-            seperate(), weather(),
-            seperate(), countdown(),
+    list = [cpu(),
+            seperate(),
             prompt(), space(),
             workspaces(), space(),
             day(), seperate(),
