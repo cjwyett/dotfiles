@@ -1,0 +1,54 @@
+00:00.0 Host bridge: Intel Corporation 2nd Generation Core Processor Family DRAM Controller (rev 09)
+	Subsystem: Lenovo Device 21ce
+00:02.0 VGA compatible controller: Intel Corporation 2nd Generation Core Processor Family Integrated Graphics Controller (rev 09)
+	Subsystem: Lenovo ThinkPad T420
+	Kernel driver in use: i915
+	Kernel modules: i915
+00:16.0 Communication controller: Intel Corporation 6 Series/C200 Series Chipset Family MEI Controller #1 (rev 04)
+	Subsystem: Lenovo Device 21ce
+	Kernel driver in use: mei_me
+	Kernel modules: mei_me
+00:16.3 Serial controller: Intel Corporation 6 Series/C200 Series Chipset Family KT Controller (rev 04)
+	Subsystem: Lenovo Device 21ce
+	Kernel driver in use: serial
+00:19.0 Ethernet controller: Intel Corporation 82579LM Gigabit Network Connection (Lewisville) (rev 04)
+	Subsystem: Lenovo ThinkPad T520
+	Kernel driver in use: e1000e
+	Kernel modules: e1000e
+00:1a.0 USB controller: Intel Corporation 6 Series/C200 Series Chipset Family USB Enhanced Host Controller #2 (rev 04)
+	Subsystem: Lenovo Device 21ce
+	Kernel driver in use: ehci-pci
+00:1b.0 Audio device: Intel Corporation 6 Series/C200 Series Chipset Family High Definition Audio Controller (rev 04)
+	Subsystem: Lenovo Device 21ce
+	Kernel driver in use: snd_hda_intel
+	Kernel modules: snd_hda_intel
+00:1c.0 PCI bridge: Intel Corporation 6 Series/C200 Series Chipset Family PCI Express Root Port 1 (rev b4)
+	Kernel driver in use: pcieport
+00:1c.1 PCI bridge: Intel Corporation 6 Series/C200 Series Chipset Family PCI Express Root Port 2 (rev b4)
+	Kernel driver in use: pcieport
+00:1c.3 PCI bridge: Intel Corporation 6 Series/C200 Series Chipset Family PCI Express Root Port 4 (rev b4)
+	Kernel driver in use: pcieport
+00:1c.4 PCI bridge: Intel Corporation 6 Series/C200 Series Chipset Family PCI Express Root Port 5 (rev b4)
+	Kernel driver in use: pcieport
+00:1d.0 USB controller: Intel Corporation 6 Series/C200 Series Chipset Family USB Enhanced Host Controller #1 (rev 04)
+	Subsystem: Lenovo Device 21ce
+	Kernel driver in use: ehci-pci
+00:1f.0 ISA bridge: Intel Corporation QM67 Express Chipset LPC Controller (rev 04)
+	Subsystem: Lenovo Device 21ce
+	Kernel driver in use: lpc_ich
+	Kernel modules: lpc_ich
+00:1f.2 SATA controller: Intel Corporation 6 Series/C200 Series Chipset Family 6 port Mobile SATA AHCI Controller (rev 04)
+	Subsystem: Lenovo Device 21ce
+	Kernel driver in use: ahci
+00:1f.3 SMBus: Intel Corporation 6 Series/C200 Series Chipset Family SMBus Controller (rev 04)
+	Subsystem: Lenovo Device 21ce
+	Kernel driver in use: i801_smbus
+	Kernel modules: i2c_i801
+03:00.0 Network controller: Intel Corporation Centrino Advanced-N 6205 [Taylor Peak] (rev 34)
+	Subsystem: Intel Corporation Centrino Advanced-N 6205 (802.11a/b/g/n)
+	Kernel driver in use: iwlwifi
+	Kernel modules: iwlwifi, wl
+0d:00.0 System peripheral: Ricoh Co Ltd MMC/SD Host Controller (rev 08)
+	Subsystem: Lenovo Device 2133
+	Kernel driver in use: sdhci-pci
+	Kernel modules: sdhci_pci

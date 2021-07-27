@@ -1,0 +1,27 @@
+{  
+  "coc.preferences.formatOnSaveFiletypes": ["julia", "markdown", "yaml", "json", "python"],
+  
+  "cSpell.language": "en_gb",
+  "cSpell.enabled": false,
+
+  // python config
+  "python.linting.enabled": true,
+  "python.linting.pylintEnabled": true,
+  
+  // explorer
+  "explorer.width": 30,
+  "explorer.icon.enableNerdfont": true,
+  "explorer.previewAction.onHover": false,
+  "explorer.keyMappings.global": {
+    "<cr>": ["expandable?", ["expanded?", "collapse", "expand"], "open"],
+    "v": "open:vsplit"
+  },
+
+  // Snippets
+  "snippets.ultisnips.directories":
+  [
+    "UltiSnips",
+    "~/.config/nvim/utils/snips"
+  ]
+
+}
