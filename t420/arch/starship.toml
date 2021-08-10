@@ -1,0 +1,67 @@
+add_newline = false
+
+#format = """
+#[───────────────────](white)
+#$all
+#"""
+
+# Replace the "❯" symbol in the prompt with "❯❯"
+[character]
+success_symbol = "→(bold green)"
+error_symbol = "→(bold red)"
+
+[line_break]
+disabled = false
+
+[status]
+symbol = ""
+disabled = false
+
+# Disable the package module, hiding it from the prompt completely
+[package]
+disabled = false
+
+# Disable the AWS module.
+[aws]
+disabled = true
+
+[battery]
+full_symbol = "🔋"
+charging_symbol = "⚡️"
+discharging_symbol = "💀"
+
+# Directory setttings
+[directory]
+format = "[$path]($style)[$read_only]($read_only_style) "
+truncation_length = 4
+truncate_to_repo = false
+truncation_symbol = "…/"
+read_only = " Read Only "
+read_only_style = "red"
+
+[username]
+disabled = false
+
+[hostname]
+ssh_only = true
+format =  "[$hostname](bold red) ❯ "
+
+# Workaround for slow prompt with git status
+[git_status]
+disabled = false
+
+[cmd_duration]
+min_time = 1000
+format = "[$duration](bold yellow)"
+show_milliseconds = true
+show_notifications = true
+min_time_to_notify = 10000
+
+[python]
+symbol = "py:"
+
+[cmake]
+symbol = "cmake:"
+
+[rust]
+symbol = "rust:"
