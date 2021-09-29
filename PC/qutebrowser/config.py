@@ -1,8 +1,8 @@
 # Themeing
 config.set("colors.webpage.darkmode.enabled", True)
-c.fonts.default_family = '"SauceCodePro Nerd Font"'
+c.fonts.default_family = '"Hack Nerd Font"'
 config.set("statusbar.show", "never")
-
+config.load_autoconfig()
 c.url.default_page = "file:///home/cyrus/.config/qutebrowser/home.html"
 c.url.start_pages = "https://www.google.com"
 c.content.notifications = False

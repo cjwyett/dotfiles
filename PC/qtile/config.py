@@ -1,7 +1,3 @@
-# vim:fileencoding=utf-8:ft=python:foldmethod=marker
-
-# Imports {{{
-
 from datetime import datetime
 from typing import List  # noqa: F401
 from libqtile import bar, layout, widget, hook
@@ -10,49 +6,23 @@ from libqtile.lazy import lazy
 import os
 import subprocess
 
-# }}}
-
-# Autostart {{{
 @hook.subscribe.startup_once
 def autostart():
     home = os.path.expanduser('~/.config/qtile/autostart.sh')
     subprocess.call([home])
-
-
-# }}}
-
-# Variables {{{
 
 mod = "mod4"
 terminal = "alacritty"
 
 groups = [Group(i) for i in "123456789"]
 
-groups += [
-    ScratchPad('0', [
-        DropDown("popup", terminal,  # "kitty, --hold python \".config/qtile/wttr.py\"",
-                 x=0.1, y=0.1, width=0.59, height=0.62, opacity=1,
-                 on_focus_lost_hide=True)]),
-    Group('0'),
-]
-
-keys = [
-    # toggle visibiliy of above defined DropDown named "term"
-    Key([mod], "p", lazy.group['0'].dropdown_toggle('popup')),
-]
-
-follow_mouse_focus = False
+follow_mouse_focus = True
 dgroups_key_binder = None
 cursor_warp = False
 bring_front_click = False
 auto_fullscreen = True
 focus_on_window_activation = "smart"
-
-
-dgroups_app_rules = [
-    Rule(
-        Match(
-            wm_class=['wtr']), float=True, intrusive=True)]
+dgroups_app_rules = []
 
 colors = [
     '#2e3440', '#3B4252', '#434C5E', '#4C566A',              # Polar Night
@@ -61,11 +31,8 @@ colors = [
     '#BF616A', '#D08770', '#EBCB8B', '#A3BE8C', '#B48EAD'   # Auora
 ]
 
-# }}}}
 
-# Keyboard Shortcuts {{{
-
-keys += [
+keys = [
 
     #* Layout *#
 
@@ -109,7 +76,8 @@ keys += [
 
     Key([mod], "b", lazy.spawn("qutebrowser")),
 
-    Key([mod], "d", lazy.spawn("rofi -show run")),
+    Key([mod], "d", lazy.spawn(
+        "rofi -modi drun,run -show drun -font \"Hack Nerd Font Regular 12\" -show-icons")),
     Key([mod], "w", lazy.spawn("rofi -show window")),
     Key([mod], "s", lazy.spawn("rofi -show ssh")),
 
@@ -133,9 +101,6 @@ for i in groups:
             desc="move focused window to group {}".format(i.name)),
     ])
 
-# }}}
-
-# Layouts {{{
 
 layouts = [
     layout.MonadTall(
@@ -144,51 +109,16 @@ layouts = [
         border_normal=colors[1],
         margin=8,
         ratio=0.55
-    ),
-
-    layout.RatioTile(name='T'),
-    layout.Max(name='F'),
+    )
 ]
 
-floating_layout = layout.Floating(float_rules=[
-    # Run the utility of `xprop` to see the wm class and name of an X client.
-    {'wmclass': 'confirm'},
-    {'wmclass': 'dialog'},
-    {'wmclass': 'download'},
-    {'wmclass': 'error'},
-    {'wmclass': 'file_progress'},
-    {'wmclass': 'notification'},
-    {'wmclass': 'splash'},
-    {'wmclass': 'toolbar'},
-    {'wmclass': 'confirmreset'},  # gitk
-    {'wmclass': 'makebranch'},  # gitk
-    {'wmclass': 'maketag'},  # gitk
-    {'wname': 'branchdialog'},  # gitk
-    {'wname': 'pinentry'},  # GPG key password entry
-    {'wmclass': 'ssh-askpass'},  # ssh-askpass
-])
-
-# Drag floating layouts.
-mouse = [
-    Drag([mod], "Button1", lazy.window.set_position_floating(),
-         start=lazy.window.get_position()),
-    Drag([mod], "Button3", lazy.window.set_size_floating(),
-         start=lazy.window.get_size()),
-    Click([mod], "Button2", lazy.window.bring_to_front())
-]
-
-# }}}
-
-# ### Bar {{{ ###
 
 widget_defaults = dict(
-    font='JuliaMono Black',
-    fontsize=12,
+    font='Hack',
+    fontsize=16,
     padding=5)
 
 extension_defaults = widget_defaults.copy()
-
-# Seperation and Spacing {{{
 
 def seperate():
     widge = widget.Sep(
@@ -202,35 +132,14 @@ def seperate():
 def space():
     return widget.Spacer(bar.STRETCH)
 
-# }}}
-
-# CPU Info {{{
-
-
-
 def cpu():
     widge = widget.CPU(
         format="CPU: {load_percent}%",
-        background=colors[8]
+        background=colors[7],
+        foreground=colors[1],
+        fontsize=14
     )
     return widge
-
-
-def cpugraph():
-    return widget.CPUGraph()
-
-# }}}
-
-# Internet {{{
-
-
-def netgraph():
-    return widget.NetGraph()
-
-# }}}
-
-# QTile {{{
-
 
 def workspaces():
     active = colors[4]
@@ -238,6 +147,9 @@ def workspaces():
     current_border = colors[7]
     urgent = colors[11]
     widge = widget.GroupBox(
+        boderwidth=1,
+        fontsize=12,
+        margin=3,
         active=active,
         background=bg,
         this_current_screen_border=current_border,
@@ -247,27 +159,14 @@ def workspaces():
     )
     return widge
 
-
-def prompt():
-    prompt = '[cyrus@PC] $ '
-    widge = widget.Prompt(
-        prompt=prompt
-    )
-    return widge
-
-# }}}
-
-# Datetimes {{{
-
-
 def day():
     widge = widget.Clock(
-        format="%A %d %B",
+        format="%a %d %b",
         background=colors[10],
-        foreground=colors[5]
+        foreground=colors[4],
+        fontsize=14
     )
     return widge
-
 
 def countdown():
     bg = colors[11]
@@ -277,36 +176,27 @@ def countdown():
         background=bg)
     return widge
 
-
 def time():
     widge = widget.Clock(
-        format="%H:%M:%S",
+        format="%H:%M",
         background=colors[7],
         foreground=colors[1],
-        fontsize=19
     )
     return widge
-
-# }}}
-
 
 def init_widgets_list():
     list = [cpu(),
             seperate(),
-            prompt(), space(),
+            space(),
             workspaces(), space(),
             day(), seperate(),
             time(),  seperate(),
             ]
     return list
 
-
 def get_bar(height=26, background=colors[1], opacity=0.9):
     widgets = init_widgets_list()
     mybar = bar.Bar(widgets, height, background=background, opacity=opacity)
     return mybar
 
-
 screens = [Screen(bottom=get_bar())]
-
-# }}}
