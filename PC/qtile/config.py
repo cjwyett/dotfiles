@@ -134,10 +134,8 @@ def space():
 
 def cpu():
     widge = widget.CPU(
-        format="CPU: {load_percent}%",
-        background=colors[7],
-        foreground=colors[1],
-        fontsize=14
+        format="   {load_percent}%",
+        foreground=colors[11],
     )
     return widge
 
@@ -161,15 +159,13 @@ def workspaces():
 
 def day():
     widge = widget.Clock(
-        format="%a %d %b",
-        background=colors[10],
-        foreground=colors[4],
-        fontsize=14
+        format="  %a %d/%m",
+        foreground=colors[12],
     )
     return widge
 
 def countdown():
-    bg = colors[11]
+    bg = colors[13]
     day = datetime(2021, 1, 25, 9)
     widge = widget.Countdown(
         date=day,
@@ -178,17 +174,18 @@ def countdown():
 
 def time():
     widge = widget.Clock(
-        format="%H:%M",
-        background=colors[7],
-        foreground=colors[1],
+        format="  %H:%M",
+        foreground=colors[15],
     )
     return widge
 
 def init_widgets_list():
-    list = [cpu(),
+    list = [space(),
+            workspaces(),
+            space(),space(),space(),space(),space(),space(),space(),space(),space(),space(),
+            space(),space(),space(),space(),space(),space(),space(),space(),space(),space(),
+            cpu(),
             seperate(),
-            space(),
-            workspaces(), space(),
             day(), seperate(),
             time(),  seperate(),
             ]
