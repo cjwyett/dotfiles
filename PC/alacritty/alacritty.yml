@@ -3,7 +3,7 @@ env:
 
 font:
 
-  size: 10.0
+  size: 11.0
 
   normal:
     family: JuliaMono
@@ -77,7 +77,7 @@ colors:
     cyan: '#6d96a5'
     white: '#aeb3bb'
 
-background_opacity: 0.85 
+window.opacity: 0.90 
 
 key_bindings:
   - { key: V,               mods: Control,                         action: Paste            }
